@@ -11,7 +11,15 @@ import {
 import { Ionicons } from "@expo/vector-icons";
 import CommentsScreen from "./CommentsScreen";
 
-export default function VideoScreen({ image, user, likes }) {
+export default function VideoScreen({
+  image,
+  user,
+  likes,
+  caption,
+  musicText,
+  music,
+  avt,
+}) {
   const [showComments, setShowComments] = useState(false);
 
   return (
@@ -20,12 +28,7 @@ export default function VideoScreen({ image, user, likes }) {
       <View style={styles.rightIcons}>
         {/* Avatar */}
         <TouchableOpacity style={styles.avatarWrapper}>
-          <Image
-            source={{
-              uri: "https://i.pravatar.cc/100?img=5",
-            }}
-            style={styles.avatar}
-          />
+          <Image source={avt} style={styles.avatar} />
         </TouchableOpacity>
 
         {/* Like */}
@@ -51,21 +54,19 @@ export default function VideoScreen({ image, user, likes }) {
 
         {/* Music disc */}
         <TouchableOpacity style={styles.discWrapper}>
-          <Image source={require("../img/music1.jpg")} style={styles.disc} />
+          <Image source={music} style={styles.disc} />
         </TouchableOpacity>
       </View>
 
       {/* Bottom text info */}
       <View style={styles.bottomInfo}>
-        <Text style={styles.user}>@{user} · 1-28</Text>
+        <Text style={styles.user}>@{user}</Text>
 
-        <Text style={styles.caption}>#avicii #wflove</Text>
+        <Text style={styles.caption}>{caption}</Text>
 
         <View style={styles.musicRow}>
           <Ionicons name="musical-notes" size={16} color="#fff" />
-          <Text style={styles.musicText}>
-            Avicii - Waiting For Love (ft...)
-          </Text>
+          <Text style={styles.musicText}>{musicText}</Text>
         </View>
       </View>
 
@@ -86,8 +87,9 @@ const styles = StyleSheet.create({
   rightIcons: {
     position: "absolute",
     right: 12,
-    bottom: 150,
+    bottom: 30,
     alignItems: "center",
+    gap: 15,
   },
 
   avatarWrapper: {
@@ -133,20 +135,21 @@ const styles = StyleSheet.create({
   },
 
   discWrapper: {
-    marginTop: 8,
+    marginTop: 4,
+    marginBottom: 8,
   },
 
   disc: {
-    width: 49,
-    height: 49,
-    borderRadius: 23,
+    width: 44,
+    height: 44,
+    borderRadius: 22,
     borderWidth: 2,
     borderColor: "#333",
   },
 
   bottomInfo: {
     paddingHorizontal: 16,
-    paddingBottom: 10,
+    paddingBottom: 28,
   },
 
   user: {
@@ -158,7 +161,7 @@ const styles = StyleSheet.create({
   caption: {
     color: "#fff",
     marginTop: 8,
-    fontSize: 14,
+    fontSize: 12,
   },
 
   musicRow: {
@@ -170,6 +173,6 @@ const styles = StyleSheet.create({
   musicText: {
     color: "#fff",
     marginLeft: 6,
-    fontSize: 13,
+    fontSize: 12,
   },
 });
